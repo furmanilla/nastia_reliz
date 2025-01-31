@@ -35,11 +35,18 @@ class Player(GameSprite):
         pass
  
 
-window = display.set_mode((700, 500))
+
+win_width = 700 
+win_height = 500 
+ 
+
+window = display.set_mode((win_width, win_height))
 display.set_caption('War')
 
 background = transform.scale(image.load("galaxy.jpg"), (700, 500))
-player = Player('hero.png', 5, win_height - 80, 4) 
+player = Player('rocket.png', 5, win_height  -80, 4) 
+
+finish = False
 
 
 mixer.init()
@@ -52,8 +59,14 @@ while game:
     for e in event.get():
         if e.type == QUIT:
             game = False
+        if finish != True: 
+            window.blit(background, (0, 0)) 
+            player.update() 
+       
+            player.reset() 
+        
 
     window.blit(background, (0, 0))  
     display.update()  
 
-quit()
+quit()  
